@@ -4,7 +4,7 @@ This is a simple web interface for seeing what devices are connected to your net
 ## Installation
 To install clone this repository to the machine where you want to run the web interface and run the following commands
 
-`
+```
 cd netgear-interface/
 touch .env
 touch addresses.js
@@ -12,27 +12,27 @@ npm install
 
 cd client/
 npm install
-`
+```
 
 ## Configuration
 .env
-`
+```
 ROUTER_PASSWORD='YOUR ROUTER PASSWORD'
-`
+```
 
 addresses.js
-`
+```
 const addresses = {
     'MAC ADDRESS': 'NAME OF TRACKED DEVICE,
     'MAC ADDRESS TWO': 'NAME OF SECOND TRACKED DEVICE'
 }
 
 module.exports = addresses;
-`
+```
 
 ## Run
 
-`
+```
 cd netgear-interface/
 npm run start
-`
+```
