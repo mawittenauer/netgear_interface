@@ -1,11 +1,6 @@
-import { Divider, List, ListItem, ListItemText, Chip, CircularProgress, Grid, Card, CardContent, Typography } from '@mui/material'; 
+import { Chip, CircularProgress, Grid, Card, CardContent, Typography, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Paper } from '@mui/material'; 
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-
-const style = {
-  width: '100%',
-  bgcolor: 'background.paper',
-};
 
 function RouterMonitor() {
   const [addresses, setAddresses] = useState([]);
@@ -66,19 +61,30 @@ function RouterMonitor() {
             </Card>
           </Grid>
           <Grid item xs={12}>
-              <List sx={style}>
-              {addresses.map(a => {
-                  return (
-                  <>
-                    <ListItem style={{ backgroundColor: !a.name && 'lightyellow' }}>
-                      <ListItemText>
-                          <Chip style={{ marginRight: '20px' }} label={ a.connected ? 'connected' : 'disconnected' } color={ a.connected ? 'success' : 'error' } /> <div style={{ display: 'inline', width: '100%', textAlign: 'right' }}>{`${a.mac}: ${a.name ? a.name : "Unknown"}`}</div></ListItemText>
-                      </ListItem>
-                    <Divider />
-                  </>
-                  );
-              })}
-              </List>
+            <TableContainer component={Paper}>
+              <Table aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell><strong>Device</strong></TableCell>
+                    <TableCell><strong>MAC</strong></TableCell>
+                    <TableCell><strong>Status</strong></TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {
+                    addresses.map(a => {
+                      return (
+                        <TableRow style={{ backgroundColor: !a.name && 'lightyellow' }}>
+                          <TableCell>{a.name ? a.name : "Unknown"}</TableCell>
+                          <TableCell>{a.mac}</TableCell>
+                          <TableCell><Chip style={{ marginRight: '20px' }} label={ a.connected ? 'connected' : 'disconnected' } color={ a.connected ? 'success' : 'error' } /></TableCell>
+                        </TableRow>
+                      )
+                    })
+                  }
+                </TableBody>
+              </Table>
+            </TableContainer>
           </Grid>
         </Grid>
       }
