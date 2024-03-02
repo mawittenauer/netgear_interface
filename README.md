@@ -11,6 +11,7 @@ touch addresses.js
 npm install
 
 cd client/
+touch .env
 npm install
 ```
 
@@ -28,6 +29,10 @@ const addresses = {
 }
 
 module.exports = addresses;
+```
+client/.env
+```
+REACT_APP_API_URL=http://localhost:8000/
 ```
 
 ## Run
