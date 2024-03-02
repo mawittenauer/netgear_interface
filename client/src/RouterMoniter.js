@@ -17,7 +17,7 @@ function RouterMonitor() {
     async function getAddresses() {
       try {
         setLoading(true);
-        const res = await axios.get('http://localhost:8000/');
+        const res = await axios.get(process.env.REACT_APP_API_URL);
         const addresses = res.data;
         const connected = addresses.filter(d => d.connected);
         const unknown = addresses.filter(d => !d.name);
