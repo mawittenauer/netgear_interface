@@ -7,8 +7,13 @@ function RouterMonitor() {
   const [connectedDevices, setConnectedDevices] = useState(0);
   const [unknownDevices, setUnknownDevices] = useState(0);
   const [loading, setLoading] = useState(false);
+  const MINUTE_MS = 60000;
 
   useEffect(() => {
+    const interval = setInterval(() => {
+        getAddresses();
+    }, MINUTE_MS);
+
     async function getAddresses() {
       try {
         setLoading(true);
@@ -28,6 +33,8 @@ function RouterMonitor() {
     };
 
     getAddresses();
+
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -74,7 +81,7 @@ function RouterMonitor() {
                   {
                     addresses.map(a => {
                       return (
-                        <TableRow style={{ backgroundColor: !a.name && 'lightyellow' }}>
+                        <TableRow key={a.mac} style={{ backgroundColor: !a.name && 'lightyellow' }}>
                           <TableCell>{a.name ? a.name : "Unknown"}</TableCell>
                           <TableCell>{a.mac}</TableCell>
                           <TableCell><Chip style={{ marginRight: '20px' }} label={ a.connected ? 'connected' : 'disconnected' } color={ a.connected ? 'success' : 'error' } /></TableCell>
