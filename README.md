@@ -2,7 +2,7 @@
 This is a simple web interface for seeing what devices are connected to your netgear router.
 
 ## Installation
-To install clone this repository to the machine where you want to run the web interface and run the following commands
+To install clone this repository to the machine where you want to run the web interface and run the following commands:
 
 ```
 cd netgear-interface/
@@ -16,12 +16,12 @@ npm install
 ```
 
 ## Configuration
-.env
+Enter the following variables into the .env file:
 ```
 ROUTER_PASSWORD='YOUR ROUTER PASSWORD'
 ```
 
-addresses.js
+Copy the following object in the addresses.js and add the MAC addresses you know:
 ```
 const addresses = {
     'MAC ADDRESS': 'NAME OF TRACKED DEVICE,
@@ -30,7 +30,8 @@ const addresses = {
 
 module.exports = addresses;
 ```
-client/.env
+
+Enter the following variables into the client/.env file:
 ```
 REACT_APP_API_URL=http://localhost:8000/
 ```
